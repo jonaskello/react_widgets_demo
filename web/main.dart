@@ -2,16 +2,13 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'dart:html';
-import 'dart:collection';
 import 'package:react/react.dart';
 import 'package:react/react_client.dart' as reactClient;
 import 'package:react_widgets/react_widgets.dart' as widgets;
 
 main() {
   reactClient.setClientConfiguration();
-
   render(rootComponent({}), querySelector('#content'));
-
 }
 
 var rootComponent = registerComponent(() => new RootComponent());
@@ -22,35 +19,52 @@ class RootComponent extends Component {
 
   getInitialState() {
     return {
-      "value": colors[0]
+      "dropdownListValue": colors[0],
+      "comboboxValue": colors[0],
+      "numberPickerValue": 5,
+      "multiselectValue": [colors[0], colors[2]],
     };
   }
 
   render() =>
   div({}, [
-    h1({"style": {"color": "red"}}, "hejhej"),
-    subComponent({}),
-    this.state["value"],
-    widgets.dropdownList({"style": {"width": "200px"}, "data": colors, "value": this.state["value"], "onChange": (value) => this.setState({"value": value}) }),
+    h1({"style": {"color": "red"}}, "DEMO"),
+    div({"style": {"padding": "10px"}}, [
+      "dropdownListValue: ${this.state["dropdownListValue"]}",
+      this.state["value"],
+      widgets.dropdownList({
+        "style": {"width": "200px"},
+        "data": colors,
+        "value": this.state["dropdownListValue"],
+        "onChange": (value) => this.setState({"dropdownListValue": value})
+      }),
+    ]),
+    div({"style": {"padding": "10px"}}, [
+      "comboboxValue: ${this.state["comboboxValue"]}",
+      widgets.combobox({
+        "style": {"width": "200px"},
+        "data": colors,
+        "value": this.state["comboboxValue"],
+        "onChange": (value) => this.setState({"comboboxValue": value})}),
+    ]),
+    div({"style": {"padding": "10px"}}, [
+      "numberPickerValue: ${this.state["numberPickerValue"]}",
+      widgets.numberPicker({
+        "style": {"width": "200px"},
+        "format": (v, c) => v,
+        "parse": (v, c) => v,
+        "value": this.state["numberPickerValue"],
+        "onChange": (value) => this.setState({"numberPickerValue": value})}),
+    ]),
+    div({"style": {"padding": "10px"}}, [
+      "multiselectValue: ${this.state["multiselectValue"]}",
+      widgets.multiselect({
+        "style": {"width": "200px"},
+        "data": colors,
+        "value": this.state["multiselectValue"],
+        "onChange": (value) => this.setState({"multiselectValue": value})}),
+    ]),
   ]);
 
 }
 
-
-var subComponent = registerComponent(() => new SubComponent());
-
-class SubComponent extends Component {
-
-  var colors = ['orange', 'red', 'blue', 'purple'];
-
-  render() =>
-  div({}, [
-    h1({"style": {"color": "green"}}, "hejhej"),
-  ]);
-
-}
-
-//class SubComponentProps extends LinkedHashMap {
-//
-//
-//}

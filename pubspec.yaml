@@ -1,6 +1,6 @@
 name: 'react_widgets_demo'
 version: 0.0.1
-description: An absolute bare-bones web app.
+description: Demos for the react_widgets package.
 #author: <your name> <email@example.com>
 #homepage: https://www.example.com
 environment:
