@@ -10,3 +10,4 @@ dependencies:
   react: any
   react_widgets:
     path: ../react_widgets
+  intl: "^0.12.4"
