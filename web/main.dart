@@ -10,6 +10,10 @@ main() {
 
     reactClient.setClientConfiguration();
     widgets.init();
+
+//  var component = div({}, "Hello world!");
+//  render(component, querySelector('#content'));
+
     render(rootComponent({}), querySelector('#content'));
 
 }
@@ -51,6 +55,7 @@ class RootComponent extends Component {
         "value": this.state["comboboxValue"],
         "onChange": (value) => this.setState({"comboboxValue": value})}),
     ]),
+    /*
     div({"style": {"padding": "10px"}}, [
       "NumberPicker: ${this.state["numberPickerValue"]}",
       widgets.numberPicker({
@@ -60,6 +65,7 @@ class RootComponent extends Component {
         "value": this.state["numberPickerValue"],
         "onChange": (value) => this.setState({"numberPickerValue": value})}),
     ]),
+    */
     div({"style": {"padding": "10px"}}, [
       "Multiselect: ${this.state["multiselectValue"]}",
       widgets.multiselect({
@@ -76,6 +82,7 @@ class RootComponent extends Component {
         "value": this.state["selectListValue"],
         "onChange": (value) => this.setState({"selectListValue": value})}),
     ]),
+    /*
     div({"style": {"padding": "10px"}}, [
       "Calendar: ${this.state["calendarValue"]}",
       widgets.calendar({
@@ -85,6 +92,7 @@ class RootComponent extends Component {
         "value": this.state["calendarValue"],
         "onChange": (value) => this.setState({"calendarValue": value})}),
     ]),
+        */
   ]);
 
 }
